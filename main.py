@@ -1,16 +1,18 @@
+#Libraries Import
 from flask import Flask, render_template, request, redirect, session
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import sessionmaker
 import re
 import hashlib
 
+#Flask App Start
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
 
-# Configure the default database connection
+# Configuration for the default database connection
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:admin551@localhost/flights_1'
 
-# Configure two separate database connections
+# Configuration for the two separate database connections flights1 and flights2
 app.config['SQLALCHEMY_BINDS'] = {
     'flights_1': 'postgresql://postgres:admin551@localhost/flights_1',
     'flights_2': 'postgresql://postgres:admin551@localhost/flights_2'
@@ -19,7 +21,7 @@ app.config['SQLALCHEMY_BINDS'] = {
 db = SQLAlchemy(app)
 
 
-# Define a model for the flight data
+# Defining a model for the flight_1 and flight_2 data
 class Flight_1(db.Model):
     __tablename__ = 'flights_1'
     __bind_key__ = 'flights_1'
@@ -62,16 +64,14 @@ def get_flight_model(bind_key):
     elif bind_key == 'flights_2':
         return Flight_2
 
-#Testing out a new method.For time validate.
+#Check for Time validition.
 def validate_time(time_str):
     time_regex = re.compile(r'^([01]\d|2[0-3]):([0-5]\d)$')
     return bool(time_regex.match(time_str))
 
 
-# Create the database tables (skip this step since the databases are already created)
-# with app.app_context():
-#     db.create_all()
 
+#Flask app respective pages and methods like update,delete etc
 @app.route('/')
 def home():
     return render_template('home.html')
