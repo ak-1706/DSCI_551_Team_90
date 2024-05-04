@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Flight</title>
+</head>
+<body>
+    <h1>Update Flight</h1>
+    <form method="POST" action="{{ url_for('admin') }}">
+        <input type="hidden" name="flight_id" value="{{ flight.flight_id }}">
+        <label for="airline">Airline:</label>
+        <input type="text" name="airline" value="{{ flight.airline }}"><br>
+        <label for="flight_type">Flight Type:</label>
+        <input type="text" name="flight_type" value="{{ flight.flight_type }}"><br>
+        <label for="from_dest">From Destination:</label>
+        <input type="text" name="from_dest" value="{{ flight.from_dest }}"><br>
+        <label for="to_dest">To Destination:</label>
+        <input type="text" name="to_dest" value="{{ flight.to_dest }}"><br>
+        <label for="flight_status">Flight Status:</label>
+        <input type="text" name="flight_status" value="{{ flight.flight_status }}"><br>
+        <label for="arrival_time">Arrival Time:</label>
+        <input type="text" name="arrival_time" value="{{ flight.arrival_time }}"><br>
+        <label for="dep_time">Departure Time:</label>
+        <input type="text" name="dep_time" value="{{ flight.dep_time }}"><br>
+        <input type="submit" name="update_flight" value="Update Flight">
+    </form>
+</body>
+</html>

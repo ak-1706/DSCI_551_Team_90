@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Page</title>
+        <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        input[type="submit"], input[type="text"], input[type="datetime-local"] {
+            padding: 10px;
+            margin-right: 10px;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background-color: white;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>Admin Page</h1>
+    <form method="POST">
+        <input type="submit" name="view" value="View Flights">
+        <br><br>
+        <input type="submit" name="add" value="Add Flight">
+        <input type="text" name="flight_id" placeholder="Flight_ID">
+        <input type="text" name="airline" placeholder="Airline">
+        <input type="text" name="flight_type" placeholder="Flight Type">
+        <input type="text" name="from_dest" placeholder="From Destination">
+        <input type="text" name="to_dest" placeholder="To Destination">
+        <!--New Flight Status Check-->
+        <select name="flight_status">
+        <option value="" disabled selected hidden>Choose Status</option>    
+        <option value="On Time">On Time</option>
+        <option value="Delayed">Delayed</option>
+        <option value="Cancelled">Cancelled</option>
+        </select>
+        <!--<input type="text" name="flight_status" placeholder="Flight Status">-->
+        <input type="text" name="arrival_time" placeholder="Arrival Time">
+        <input type="text" name="dep_time" placeholder="Departure Time">
+        <br><br>
+        <h2>Update Flight</h2>
+        <input type="text" name="flight_idup" placeholder="Flight ID">
+        <br><br>
+        <!--<input type="text" name="airline" placeholder="New Airline">
+        <input type="text" name="flight_type" placeholder="New Flight Type">
+        <input type="text" name="from_dest" placeholder="New From Destination">
+        <input type="text" name="to_dest" placeholder="New To Destination">
+        <input type="text" name="flight_status" placeholder="New Flight Status">
+        <input type="text" name="arrival_time" placeholder="New Arrival Time">
+        <input type="text" name="dep_time" placeholder="New Departure Time">-->
+        <input type="submit" name="update" value="Update Flight">
+        <br><br>
+        <br><br>
+        <input type="submit" name="delete" value="Delete Flight">
+        <input type="text" name="flight_idd" placeholder="Flight ID">
+    </form>
+    {% if flights %}
+    <ul>
+        {% for flight in flights %}
+        <li>
+            Flight ID: {{ flight.flight_id }}<br>
+            Airline: {{ flight.airline }}<br>
+            Flight Type: {{ flight.flight_type }}<br>
+            From Destination: {{ flight.from_dest }}<br>
+            To Destination: {{ flight.to_dest }}<br>
+            Flight Status: {{ flight.flight_status }}<br>
+            Arrival Time: {{ flight.arrival_time }}<br>
+            Departure Time: {{ flight.dep_time }}
+        </li>
+        <br>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</body>
+</html>

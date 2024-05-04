@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        form {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        select, input[type="text"], input[type="submit"] {
+            padding: 10px;
+            margin-right: 10px;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background-color: white;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>User Page</h1>
+    <form method="POST">
+        <select name="search_column">
+            <option value="flight_id">Flight ID</option>
+            <option value="airline">Airline</option>
+            <option value="flight_type">Flight Type</option>
+            <option value="from_dest">From Destination</option>
+            <option value="to_dest">To Destination</option>
+            <option value="flight_status">Flight Status</option>
+        </select>
+        <input type="text" name="search_value" placeholder="Search Value">
+        <input type="submit" value="Search">
+    </form>
+    {% if flights %}
+    <ul>
+        {% for flight in flights %}
+        <li>
+            Flight ID: {{ flight.flight_id }}<br>
+            Airline: {{ flight.airline }}<br>
+            Flight Type: {{ flight.flight_type }}<br>
+            From Destination: {{ flight.from_dest }}<br>
+            To Destination: {{ flight.to_dest }}<br>
+            Flight Status: {{ flight.flight_status }}<br>
+            Arrival Time: {{ flight.arrival_time }}<br>
+            Departure Time: {{ flight.dep_time }}
+        </li>
+        <br>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</body>
+</html>
