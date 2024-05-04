@@ -71,7 +71,7 @@ def validate_time(time_str):
 
 
 
-#Flask app respective pages and methods like update,delete etc
+#Flask app respective pages and methods like update,delete,add etc
 @app.route('/')
 def home():
     return render_template('home.html')
